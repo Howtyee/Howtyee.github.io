@@ -4,100 +4,115 @@
   <meta charset="UTF-8">
   <title>Tianyu Hao (郝天宇)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      max-width: 850px;
-      margin: 40px auto;
-      padding: 0 16px;
-      line-height: 1.6;
-    }
-    h1, h2 {
-      margin-bottom: 0.4em;
-    }
-    .name {
-      font-size: 2rem;
-      font-weight: 700;
-    }
-    .subtitle {
-      color: #555;
-      margin-bottom: 1.2em;
-    }
-    .section {
-      margin-top: 2rem;
-    }
-    ul {
-      padding-left: 1.2rem;
-    }
-    .paper-title {
-      font-weight: 600;
-    }
-    .year-tag {
-      font-size: 0.9rem;
-      color: #888;
-      margin-left: 0.3rem;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="name">Tianyu Hao (郝天宇)</div>
-    <div class="subtitle">
-      M.S. Student in Artificial Intelligence, Guangzhou University<br>
-      Advisor: Prof. Keke Tang (唐可可)
-    </div>
-    <p>
-      Email: <a href="mailto:xxx@xxx.com">xxx@xxx.com</a> ·
-      GitHub: <a href="https://github.com/Howtyee">Howtyee</a>
-    </p>
-  </header>
+  <div class="container">
+    <header class="header">
+      <img src="Imgs/Hao_photo.jpg" alt="Tianyu Hao" class="profile-photo">
+      <div class="header-info">
+        <h1 class="name">Tianyu Hao (郝天宇)</h1>
+        <p class="affiliation">
+          M.S. Student in Artificial Intelligence, Guangzhou University<br>
+          Advisor: Prof. <a href="https://tangbohu.github.io" target="_blank">Keke Tang</a> (唐可可)
+        </p>
+        <div class="contact-info">
+          <a href="mailto:howtyee@e.gzhu.edu.cn">Email</a> / <a href="mailto:howty666@gmail.com">Gmail</a> ·
+          <a href="https://github.com/Howtyee" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </header>
 
-  <section class="section">
-    <h2>About</h2>
-    <p>
-      （这里写几句话介绍你现在在做什么、研究兴趣、未来打算。比如：
-      “I am an M.S. student in Artificial Intelligence at Guangzhou University.
-      My research interests include xxx, xxx, and xxx. Recently, I have been working on ...”）
-    </p>
-  </section>
+    <section class="section">
+      <h2>Biography</h2>
+      <p>
+        During my high school, I was enrolled in a joint program between the NO.1 Middle School affiliated to Central China Normal University (华中师范大学第一附属中学) and the Teenagers Aviation School Of Air Force (空军青少年航空学校). I received training in flight technology and successfully completed five sorties on the CJ-6 trainer aircraft, achieving the top flight performance in my regiment.
+      </p>
+      <div class="bio-images">
+        <figure>
+          <img src="Imgs/plane.png" alt="Flight training group photo">
+          <figcaption>First from left: me.</figcaption>
+        </figure>
+        <figure>
+          <img src="Imgs/ontheplane.png" alt="In the CJ-6 cockpit">
+          <figcaption>Shot on a CJ-6 with a GoPro.</figcaption>
+        </figure>
+      </div>
+      <p>
+        For my undergraduate studies, I attended Lanzhou University of Finance and Economics. Due to special circumstances, I did not pursue a military career. Instead, I engaged in research under the guidance of Prof. <a href="https://it.lzufe.edu.cn/info/1202/5024.htm" target="_blank">Jiangping He</a>, which resulted in two national-level awards and two minor publications.
+      </p>
+      <p>
+        Currently, I am pursuing my Master's degree under the supervision of Prof. Keke Tang. My research work has so far led to one publication at AAAI and one at IJCAI.
+      </p>
+    </section>
 
-  <section class="section">
-    <h2>Education</h2>
-    <ul>
-      <li>
-        <strong>Guangzhou University</strong>, M.S. in Artificial Intelligence
-        <span class="year-tag">202x – now</span><br>
-        Advisor: Prof. Keke Tang (唐可可)
-      </li>
-      <li>
-        <strong>XXXX University</strong>, B.S. in XXXX
-        <span class="year-tag">201x – 202x</span>
-      </li>
-    </ul>
-  </section>
 
-  <section class="section">
-    <h2>Publications / Recent Papers</h2>
-    <ul>
-      <li>
-        <span class="paper-title">Paper Title 1</span><br>
-        Author1, Author2, <strong>Tianyu Hao</strong>, etc. <br>
-        <em>Conference / Journal, 202x.</em>
-        [<a href="#">PDF</a>] [<a href="#">Code</a>]
-      </li>
-      <li>
-        <span class="paper-title">Paper Title 2</span><br>
-        ...
-      </li>
-    </ul>
-  </section>
 
-  <section class="section">
-    <h2>Awards</h2>
-    <ul>
-      <li>XXX Scholarship, Guangzhou University, 202x</li>
-      <li>XXX Competition, First Prize, 202x</li>
-    </ul>
-  </section>
+    <section class="section">
+      <h2>Referred Research Publications</h2>
+      <ul class="publication-list">
+        <li class="publication-item">
+          <img src="Publication/images/SCP.png" alt="SCP Paper Thumbnail" class="publication-image">
+          <div class="publication-details">
+            <p class="publication-title">Less Is More: Sparse and Cooperative Perturbation for Point Cloud Attacks</p>
+            <p class="authors"><strong>Tianyu Hao*</strong>, Keke Tang, Xiaofei Wang, Weilong Peng, Denghui Zhang, Peican Zhu, and Zhihong Tian</p>
+            <p class="authors">*co-first author</p>
+            <p class="conference">AAAI Conference on Artificial Intelligence (AAAI), 2026</p>
+            <p class="links">[<a href="#">PDF</a>]</p>
+          </div>
+        </li>
+        <li class="publication-item">
+          <img src="Publication/images/AdvGrasp.png" alt="AdvGrasp Paper Thumbnail" class="publication-image">
+          <div class="publication-details">
+            <p class="publication-title">AdvGrasp: Adversarial Attacks on Robotic Grasping from a Physical Perspective</p>
+            <p class="authors">Xiaofei Wang, Mingliang Han, <strong>Tianyu Hao</strong>, Cegang Li, Yunbo Zhao and Keke Tang</p>
+            <p class="conference">International Joint Conference on Artificial Intelligence (IJCAI), 2025</p>
+            <p class="links">[<a href="#">PDF</a>]</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+
+    <section class="section">
+      <h2>Research</h2>
+      <p>
+        My research interests fall into the areas of robotics, computer vision and computer graphics, including:
+      </p>
+      <div class="research-interests">
+        <div class="research-category">
+          <h3>AI Security</h3>
+          <ul>
+            <li>Adversarial Examples</li>
+            <li>Robotic Security</li>
+          </ul>
+        </div>
+        <div class="research-category">
+          <h3>Robotics</h3>
+          <ul>
+            <li>Robotic Vision</li>
+            <li>Security in Robotics</li>
+            <li>Computational Robotics</li>
+          </ul>
+        </div>
+        <div class="research-category">
+          <h3>Computer Vision</h3>
+          <ul>
+            <li>3D Shape Description and Matching</li>
+            <li>3D Object Registration, Reconstruction, and Recognition</li>
+            <li>Image Classification</li>
+          </ul>
+        </div>
+        <div class="research-category">
+          <h3>Computer Graphics</h3>
+          <ul>
+            <li>Geometry Processing</li>
+            <li>Computational Fabrication</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
 </body>
 </html>
+
