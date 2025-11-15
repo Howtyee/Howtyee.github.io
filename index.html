@@ -5,6 +5,15 @@
   <title>Tianyu Hao (郝天宇)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PJRE82BR77"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} // eslint-disable-line prefer-rest-params
+    gtag('js', new Date());
+
+    gtag('config', 'G-PJRE82BR77');
+  </script>
 </head>
 <body>
   <div class="container">
@@ -123,16 +132,90 @@
       </div>
       <div class="visitor-widget">
         <h3>Global Visitors</h3>
-        <p>Live footprint of recent visits around the world.</p>
-        <div class="globe-embed">
-          <script type="text/javascript" src="https://ra.revolvermaps.com/0/0/8.js?i=5p9hhi3wk44&amp;m=0&amp;c=00b0ff&amp;cr1=ffffff&amp;f=Helvetica&amp;l=33" async></script>
-        </div>
+        <div id="globe-container" aria-label="Interactive globe showing visitor locations"></div>
+        <div id="globe-tooltip" class="globe-tooltip" role="tooltip"></div>
       </div>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/globe.gl@2.35.1/dist/globe.gl.min.js"></script>
   <script>
     document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    const VISIT_DATA_URL = 'https://script.google.com/macros/s/AKfycbzbXb3xAf2wZQYa_a-IPp7-EePZ2XIMng4o2peSjJEQRuZHz92Foa0tJTlVfwfoz2435Q/exec';
+    const fallbackVisitData = [
+      { city: 'Guangzhou, China', lat: 23.1291, lng: 113.2644, visits: 1 }
+    ];
+
+    const globeContainer = document.getElementById('globe-container');
+    const tooltip = document.getElementById('globe-tooltip');
+
+    async function fetchVisitData() {
+      try {
+        const resp = await fetch(VISIT_DATA_URL, { cache: 'no-store' });
+        if (!resp.ok) throw new Error('Visit API error');
+        const data = await resp.json();
+        if (!Array.isArray(data) || !data.length) throw new Error('Empty data');
+        return data;
+      } catch (err) {
+        console.warn('Falling back to placeholder visit data.', err);
+        return fallbackVisitData;
+      }
+    }
+
+    async function initGlobe() {
+      if (!globeContainer || !window.Globe) {
+        globeContainer.innerHTML = '<p class="globe-fallback">Visitor globe is unavailable right now.</p>';
+        return;
+      }
+
+      const globe = Globe()(globeContainer)
+        .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-dark.jpg')
+        .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
+        .backgroundColor('rgba(0,0,0,0)')
+        .pointLat('lat')
+        .pointLng('lng')
+        .pointAltitude(d => 0.02 + Math.min(d.visits / 200, 0.2))
+        .pointColor(() => '#00b0ff')
+        .pointRadius(0.15)
+        .atmosphereColor('#2a74ff')
+        .atmosphereAltitude(0.15);
+
+      const visitData = await fetchVisitData();
+
+      globe.pointsData(visitData);
+
+      globe.onPointHover(point => {
+        if (!point) {
+          tooltip.style.opacity = 0;
+          return;
+        }
+        tooltip.innerHTML = `${point.city}<br>Visits: ${point.visits}`;
+        tooltip.style.opacity = 1;
+      });
+
+      globeContainer.addEventListener('mousemove', event => {
+        tooltip.style.left = `${event.clientX + 15}px`;
+        tooltip.style.top = `${event.clientY + 15}px`;
+      });
+
+      window.addEventListener('resize', () => {
+        const size = Math.min(globeContainer.clientWidth, 360);
+        globe.width(size);
+        globe.height(size);
+      });
+
+      const initialSize = Math.min(globeContainer.clientWidth, 360);
+      globe.width(initialSize);
+      globe.height(initialSize);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGlobe);
+    } else {
+      initGlobe();
+    }
   </script>
 </body>
 </html>
